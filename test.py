@@ -99,14 +99,10 @@ for each in fasta_map.keys():
         count[each] = temp_count
 
     elif int(length) > int(window_size):
-        # print("Reading scaffold: %s"%(each))
-        # n = n + 1
         binCov = 0
         numOfBins = int(length / step)
-        # print(numOfBins)
         penumPos = numOfBins * step
         for i in xrange(1, (numOfBins)+2):
-            # penumPos = numOfBins * window_size
             if i == 1:
                 binCov = 0
                 for cov in bamfile.fetch(each, startPos, stopPos):
@@ -114,7 +110,6 @@ for each in fasta_map.keys():
                 temp_key = "%s.%s%d" % (each, "bin", i)
                 data = [startPos, stopPos, binCov]
                 temp_count[temp_key] = data
-                #print(temp_count)
             elif i <= numOfBins:
                 binCov = 0
                 for cov in bamfile.fetch(each, startPos, stopPos):
@@ -122,7 +117,6 @@ for each in fasta_map.keys():
                 temp_key = "%s.%s%d" % (each, "bin", i)
                 data = [startPos, stopPos, binCov]
                 temp_count[temp_key] = data
-                #print(temp_count)
             elif i > numOfBins:
                 binCov = 0
                 startPos = penumPos + 1
@@ -132,17 +126,14 @@ for each in fasta_map.keys():
                 temp_key = "%s.%s%d" % (each, "bin", i)
                 data = [startPos, stopPos, binCov]
                 temp_count[temp_key] = data
-                #print(temp_count)
             else:
                 continue
 
             startPos = (stopPos - step) + 1
             stopPos = (startPos + window_size) - 1
         count[each] = temp_count
-    # temp_count.clear()
     else:
         continue
-        # temp_count.clear()
 
 ch = open("data.cov", "w")
 for key, value in count.items():
@@ -151,7 +142,6 @@ for key, value in count.items():
         if ch.tell() == 0:
             ch.write("%s\t%s\t%s\t%s\n"%("Chromosome", "Start", "End", "Coverage"))
             ch.write("%s\t%d\t%d\t%d\n" % (key, v[0], v[1], v[2]))
-            #continue
         else:
             ch.write("%s\t%d\t%d\t%d\n"%(key, v[0], v[1], v[2]))
 ch.close()
