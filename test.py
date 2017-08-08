@@ -18,9 +18,7 @@ with open("fasta_length.tab", "r") as fl:
         temp = line.split("\t")
         fasta_map[temp[0].strip()] = temp[1].strip()
 
-#count_2d = [[0]] * 1000
 count = OrderedDict()
-#print(samfile.count(until_eof=True))
 window_size = 19644
 
 binCov = 0
@@ -90,18 +88,14 @@ for each in fasta_map.keys():
     temp_key = ""
     startPos = 1
     stopPos = window_size
-    # print("%s ==> %s"%(each, fasta_map[each]))
     length = int(fasta_map[each])
     if int(length) <= int(window_size):
-        # print("%s length is shorter than window length"%(each))
         binCov = 0
         for cov in bamfile.fetch(each, startPos, length):
             binCov = binCov + 1
-        # print("%s\t%d\t%d\t%d"%(each,startPos,final_pos,binCov))
         temp_key = "%s.%s%d" % (each, "bin", 1)
         data = [startPos, length, binCov]
         temp_count[temp_key] = data
-        #print(temp_count)
         count[each] = temp_count
 
     elif int(length) > int(window_size):
