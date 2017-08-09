@@ -163,23 +163,3 @@ for key, value in count.items():
 ch.close()
 
 bamfile.close()
-
-#https://www.biostars.org/p/64687/
-
-####### Other Methods #################
-#fasta_length.py -f <fasta file> -s <header delimiter> -b <header block> > ref_lengths.txt
-#bedtools genomecov -ibam Danaus_female_N90_sorted.bam -g Danaus_female_N90_lengths.txt -d > Danaus_female_N90.cov
-#bedtools groupby -i Danaus_female_N90.cov -g 1 -c 3 -o median > Danaus_female_median_coverage_per_scaffold.cov
-#refbamtocovcmd = ['bedtools', 'genomecov', '-ibam', 'pt_with_control_data.sorted.bam', '-g', 'fasta_length.tab', '-d']
-#qrybamtocovcmd = ['bedtools', 'genomecov', '-ibam', 'sorted.bam', '-g', 'fasta_length.tab', '-d', '>',  'qry.cov']
-
-#bamtorefcov = subprocess.Popen(refbamtocovcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-#bamtoqrycov = subprocess.Popen(qrybamtocovcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-#bamtorefcov.communicate()
-#ref_cov, ref_err = bamtorefcov.communicate()
-#qry_cov, qry_err = bamtoqrycov.communicate()
-
-#if bamtorefcov.returncode != 0: #or bamtoqrycov != 0:
-#    print('BAM coverage calculation failed')
-#    exit()
-#print(ref_cov)
