@@ -159,10 +159,10 @@ def printStartMessage():
 	######################################################                                	                                
 	"""
 	)
-	print("")
+	#print("")
 	print("eSUB::Electronic Subtraction of Read Data Using K-mers")
 	print("Kumar Saurabh Singh (k.saurabh-singh@exeter.ac.uk)")
-	print("")
+	#print("")
 
 def convertTimeDeltaToReadableString(timeDelta):
 	seconds = timeDelta.seconds
