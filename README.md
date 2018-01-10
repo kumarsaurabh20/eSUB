@@ -1,2 +1,3 @@
-<img src="esub.png" width="250" height="200" />
+<img src="esub.png" width="350" height="300" />
+
 # eSUB
